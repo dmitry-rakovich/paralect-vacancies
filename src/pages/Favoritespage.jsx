@@ -11,11 +11,14 @@ export default function Favoritespage() {
     document.title = "Избранное";
     const paramString =
       JSON.parse(localStorage.getItem("favorites"))?.join("&ids[]=") || "";
+      const { token_type, access_token } = JSON.parse(
+        localStorage.getItem("paralect_token")
+      );
     fetch(import.meta.env.VITE_URL + "vacancies/?&ids[]=" + paramString, {
       headers: {
         "x-secret-key": import.meta.env.VITE_SECRET_KEY,
         "X-Api-App-Id": import.meta.env.VITE_APP_ID,
-        Authorization: localStorage.getItem("token"),
+        Authorization: `${token_type} ${access_token}`,
       },
     })
       .then((res) => res.json())
