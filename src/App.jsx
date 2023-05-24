@@ -15,7 +15,7 @@ function App() {
       }).then((res) => res.json())
       .then((data) => {
         localStorage.setItem("paralect_token", JSON.stringify(data))
-      })
+      }).then(() => location.reload())
     } else if (JSON.parse(localStorage.getItem('paralect_token')).ttl * 1000 < Date.now()) {
       const paramString = new URLSearchParams({
         refresh_token: JSON.parse(localStorage.getItem('paralect_token')).refresh_token,
@@ -26,7 +26,7 @@ function App() {
         headers: {
           "x-secret-key": import.meta.env.VITE_SECRET_KEY,
         },
-      }).then((res) => res.json()).then((data) => localStorage.setItem("paralect_token", JSON.stringify(data)))
+      }).then((res) => res.json()).then((data) => localStorage.setItem("paralect_token", JSON.stringify(data))).then(() => location.reload())
     }
   }, [])
   return (
