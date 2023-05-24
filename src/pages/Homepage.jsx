@@ -14,6 +14,7 @@ export default function Homepage() {
   const [paymentTo, setPaymentTo] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
+  const [total, setTotal] = useState(500);
 
   useEffect(() => {
     document.title = "Поиск Вакансий";
@@ -43,7 +44,10 @@ export default function Homepage() {
       },
     })
       .then((res) => res.json())
-      .then((data) => setVacancies(data.objects))
+      .then((data) => {
+        setVacancies(data.objects)
+        setTotal(data.total)
+      })
       .then(() => setIsLoading(false));
   }
 
@@ -83,11 +87,11 @@ export default function Homepage() {
                 vacancy={vacancy}
               />
             ))}
-            <Pagination page={page} setPage={setPage} />
           </>
         ) : (
           <Emptypage />
         )}
+          <Pagination total={total} setPage={setPage} />
       </div>
     </>
   );

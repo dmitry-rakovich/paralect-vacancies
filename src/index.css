@@ -94,6 +94,10 @@ input:hover {
   outline: none;
 }
 
+ul > li {
+  list-style: none;
+}
+
 .active {
   color: var(--blue-500);
 }
@@ -311,6 +315,49 @@ input:hover {
 .pagination {
   display: flex;
   margin: 40px auto;
+  gap: 8px;
+}
+
+.page_item {
+  display: grid;
+  place-content: center;
+  min-width: 32px;
+  height: 32px;
+  border: 1px solid var(--grey-300);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.page_item:hover {
+  border-color: var(--blue-400);
+}
+
+.page_item.active {
+  background-color: var(--blue-500);
+  border-color: var(--blue-500);
+  color: var(--white);
+}
+
+.page_item.disabled,
+.page_item.disabled:hover .page_item {
+  border-color: var(--grey-300);
+}
+.page_item.disabled svg {
+  color: var(--grey-300);
+}
+
+.previous {
+  width: 32px;
+  height: 32px;
+}
+
+.next {
+  width: 32px;
+  height: 32px;
+}
+
+.page_link {
+  padding: 4px 12px;
 }
 
 .empty_page {
