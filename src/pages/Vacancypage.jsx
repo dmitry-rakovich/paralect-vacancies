@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import location from "../assets/Location.svg";
+import Loader from "../components/Loader";
 
 export default function Vacancy() {
   const { id } = useParams();
   const [vacancy, setVacancy] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(
     JSON.parse(localStorage.getItem("favorites"))?.includes(id) || false
   );
@@ -20,11 +22,12 @@ export default function Vacancy() {
       },
     })
       .then((res) => res.json())
-      .then((data) => setVacancy(data));
+      .then((data) => setVacancy(data))
+      .then(() => setIsLoading(false));
   }, [id]);
   useEffect(() => {
-    document.title = `Вакансия ${id}`;
-  }, []);
+    document.title = `Вакансия ${vacancy?.profession}`;
+  }, [vacancy]);
 
   function handleFavorite() {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -43,7 +46,8 @@ export default function Vacancy() {
   }
   return (
     <>
-      {vacancy && (
+      {isLoading ? <Loader/> :
+      vacancy && (
         <div className="vacancy_wrapper">
           <>
             <div className="vacancy_item">
