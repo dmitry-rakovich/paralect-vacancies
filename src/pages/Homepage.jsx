@@ -10,8 +10,8 @@ export default function Homepage() {
   const [vacancies, setVacancies] = useState([]);
   const [currentCategorie, setCurrentCategorie] = useState("");
   const [keyword, setKeyword] = useState("");
-  const [paymentFrom, setPaymentFrom] = useState('0');
-  const [paymentTo, setPaymentTo] = useState('0');
+  const [paymentFrom, setPaymentFrom] = useState('');
+  const [paymentTo, setPaymentTo] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(0);
 
@@ -81,7 +81,6 @@ export default function Homepage() {
               <Jobitem
                 key={vacancy.id}
                 vacancy={vacancy}
-                getVacancies={getVacancies}
               />
             ))}
             <Pagination page={page} setPage={setPage} />

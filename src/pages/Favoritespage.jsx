@@ -26,7 +26,6 @@ export default function Favoritespage() {
       .then(() => setIsLoading(false));
   }, []);
 
-  async function getVacancies() {}
   return (
     <div className="vacancy_wrapper">
       {isLoading ? (
@@ -36,7 +35,6 @@ export default function Favoritespage() {
           <Jobitem
             key={vacancy.id}
             vacancy={vacancy}
-            getVacancies={getVacancies}
           />
         ))
       ) : (

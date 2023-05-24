@@ -7,8 +7,8 @@ function Filter({getVacancies, setKeyword, setPaymentFrom, setPaymentTo, setCurr
   function handleReset() {
     setCurrentCategorie("");
     setKeyword("");
-    setPaymentFrom(0);
-    setPaymentTo(0);
+    setPaymentFrom("");
+    setPaymentTo("");
   }
 
   useEffect(() => {
@@ -34,7 +34,9 @@ function Filter({getVacancies, setKeyword, setPaymentFrom, setPaymentTo, setCurr
         Сбросить всё &times;
       </button>
     </div>
-    <label>Отрасль</label>
+    <div className="filter_content">
+    <label>
+    <h3>Отрасль</h3>
     <select
       data-elem="industry-select"
       value={currentCategorie}
@@ -49,7 +51,9 @@ function Filter({getVacancies, setKeyword, setPaymentFrom, setPaymentTo, setCurr
         </option>
       ))}
     </select>
-    <label>Оклад</label>
+      </label>
+    <label>
+      <h3>Оклад</h3>
     <input
       data-elem="salary-from-input"
       type="number"
@@ -58,7 +62,7 @@ function Filter({getVacancies, setKeyword, setPaymentFrom, setPaymentTo, setCurr
       placeholder="От"
       value={paymentFrom}
       onChange={(e) => setPaymentFrom(e.target.value)}
-    />
+      />
     <input
       data-elem="salary-to-input"
       type="number"
@@ -67,10 +71,12 @@ function Filter({getVacancies, setKeyword, setPaymentFrom, setPaymentTo, setCurr
       placeholder="До"
       value={paymentTo}
       onChange={(e) => setPaymentTo(e.target.value)}
-    />
+      />
+      </label>
     <button data-elem="search-button" className="button" onClick={getVacancies}>
       Применить
     </button>
+    </div>
   </div>
   );
 }

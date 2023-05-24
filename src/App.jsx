@@ -3,7 +3,6 @@ import Header from './components/Header'
 import Homepage from './pages/Homepage'
 import Favoritespage from './pages/Favoritespage'
 import Vacancyspage from './pages/Vacancypage'
-import './App.css'
 import { useEffect } from 'react'
 
 function App() {
