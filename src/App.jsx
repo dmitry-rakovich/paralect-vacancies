@@ -16,7 +16,7 @@ function App() {
       }).then((res) => res.json())
       .then((data) => {
         localStorage.setItem("paralect_token", JSON.stringify(data))
-      }).then(() => location.reload())
+      })
     } 
     // else if (JSON.parse(localStorage.getItem('paralect_token')).ttl * 1000 < Date.now()) {
     //   const paramString = new URLSearchParams({
