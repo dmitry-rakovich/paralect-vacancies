@@ -7,7 +7,6 @@ import { useEffect } from 'react'
 
 function App() {
   useEffect(() => {
-    localStorage.clear()
     if(!localStorage.getItem('paralect_token') || (localStorage.getItem('paralect_token')).ttl * 1000 < Date.now()) {
       fetch(import.meta.env.VITE_TOKEN_URL, {
         headers: {
