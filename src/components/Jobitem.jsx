@@ -3,19 +3,18 @@ import {  useState } from 'react';
 import { Link } from 'react-router-dom';
 import location from '../assets/Location.svg'
 export default function Jobitem({vacancy: {payment_from, payment_to, profession, currency, type_of_work, town, id}}) {
-  const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || [])
-  const [isFavorite, setIsFavorite] = useState(favorites.includes(`${id}`) || false)
+  const [isFavorite, setIsFavorite] = useState((JSON.parse(localStorage.getItem('favorites')) || []).includes(`${id}`) || false)
 
   function handleFavorite() {
+
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || []
     
     if(isFavorite) {
       const newFavorites = favorites.filter(item => item !== `${id}`)
       localStorage.setItem('favorites', JSON.stringify(newFavorites))
-      setFavorites(() => newFavorites)
     } else {
       const newFavorites = [...favorites, `${id}`]
       localStorage.setItem('favorites', JSON.stringify(newFavorites))
-      setFavorites(() => newFavorites)
     }
     setIsFavorite(!isFavorite)
   }
